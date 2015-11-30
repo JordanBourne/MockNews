@@ -11,6 +11,7 @@ require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
+require('dotenv').load();
 
 mongoose.connect('mongodb://localhost/news')
 
