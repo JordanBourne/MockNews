@@ -1,7 +1,6 @@
 {
-  "name": "flapper-news",
-  "version": "0.0.0",
-  "private": true,
+  "name": "mock-news",
+  "version": "0.0.1",
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -19,5 +18,17 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "engines": {
+    "node": "0.12.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JordanBourne/MockNews"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
 }
