@@ -135,6 +135,23 @@ app.factory('posts', ['$http', 'auth', function($http, auth){
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         }).success(function(data){
             post.upvotes += 1;
+            console.log(post);
+        });
+    };
+    
+    o.downvote = function(post) {
+        return $http.put('/posts/' + post._id + '/downvote', null, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function(data){
+            post.upvotes -= 1;
+        });
+    };
+    
+    o.delete = function(post) {
+        return $http.delete('/posts/' + post._id, null, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function(data){
+            o.posts.slice(o.posts.indexOf(post), 1);
         });
     };
     
@@ -152,6 +169,14 @@ app.factory('posts', ['$http', 'auth', function($http, auth){
         });
     };
     
+    o.downvoteComment = function(post, comment) {
+        return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/downvote', null, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function(data){
+            comment.upvotes -= 1;
+        });
+    };
+    
     return o;
 }]);
 
@@ -160,22 +185,37 @@ app.controller('MainCtrl', [
     'posts',
     'auth',
     function ($scope, posts, auth) {
-        $scope.test = 'Hello World!';
         
         $scope.posts = posts.posts;
         
         $scope.addPost = function () {
-            if(!$scope.title || $scope.title === '') { return; }
+            if(!$scope.title || $scope.title === '') { 
+                $scope.error = "Title can't be blank!";
+                return; 
+            }
+            if($scope.link.length > 0 && $scope.link.indexOf('http://') != 0) {
+                $scope.error = "Link must start with http://"
+                return;
+            }
             posts.create({
                 title: $scope.title, 
                 link: $scope.link
             });
             $scope.title = '';
             $scope.link = '';
+            $scope.error = '';
         };
         
         $scope.incrementUpvotes = function (post) {
             posts.upvote(post);
+        };
+        
+        $scope.incrementDownvotes = function (post) {
+            posts.downvote(post);
+            if(post.upvotes <= -10) {
+                posts.delete(post);
+                $scope.posts.splice($scope.posts.indexOf(post),1);
+            }
         };
             
         $scope.isLoggedIn = auth.isLoggedIn;
@@ -206,6 +246,10 @@ app.controller('PostsCtrl', [
         
         $scope.incrementUpvotes = function(comment){
             posts.upvoteComment(post, comment);
+        };
+        
+        $scope.incrementDownvotes = function(comment){
+            posts.downvoteComment(post, comment);
         };
         
         $scope.isLoggedIn = auth.isLoggedIn;

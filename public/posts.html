@@ -11,7 +11,9 @@
     
     <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
         <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-        {{comment.upvotes}} - by {{comment.author}}
+        {{comment.upvotes}}
+        <span class="glyphicon glyphicon-thumbs-down" ng-click="incrementDownvotes(comment)" style = "cursor: pointer"></span>
+         - by {{comment.author}}
         <span style="font-size:20px; margin-left:10px;">
             {{comment.body}}
         </span>
@@ -23,4 +25,5 @@
             <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
         </div>
         <button type="submit" class="btn btn-primary">Post</button>
+        <p style = "color: red">{{error}}</p>
     </form>

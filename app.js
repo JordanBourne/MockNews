@@ -15,7 +15,7 @@ require('./config/passport');
 require('dotenv').load();
 
 mongoose.connect(process.env.MONGOLAB_URI)
-//mongoose.connect('mongodb://localhost/news')
+//mongoose.connect('mongodb://localhost/news') //Local testing DB path
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
