@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
@@ -13,7 +14,7 @@ require('./models/Users');
 require('./config/passport');
 require('dotenv').load();
 
-mongoose.connect('mongodb://localhost/news')
+mongoose.connect('mongodb://heroku_z3cz5tlf:q7dcq3dfsma4jsh24qpo0ajgpr@ds059644.mongolab.com:59644/heroku_z3cz5tlf')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
