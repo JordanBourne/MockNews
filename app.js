@@ -14,7 +14,7 @@ require('./models/Users');
 require('./config/passport');
 require('dotenv').load();
 
-mongoose.connect('mongodb://heroku_z3cz5tlf:q7dcq3dfsma4jsh24qpo0ajgpr@ds059644.mongolab.com:59644/heroku_z3cz5tlf')
+mongoose.connect(MONGOLAB_URI)
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
