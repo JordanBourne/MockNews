@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var angular = require('angular');
 
 require('./models/Posts');
 require('./models/Comments');
