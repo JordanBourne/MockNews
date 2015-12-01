@@ -14,7 +14,7 @@ require('./models/Users');
 require('./config/passport');
 require('dotenv').load();
 
-mongoose.connect(MONGOLAB_URI)
+mongoose.connect(process.env.MONGOLAB_URI)
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
