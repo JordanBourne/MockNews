@@ -193,7 +193,7 @@ app.controller('MainCtrl', [
                 $scope.error = "Title can't be blank!";
                 return; 
             }
-            if($scope.link.length > 0 && $scope.link.indexOf('http://') != 0) {
+            if($scope.link && ($scope.link.indexOf('http://') != 0 || $scope.link.indexOf('https://') != 0 )) {
                 $scope.error = "Link must start with http://"
                 return;
             }
