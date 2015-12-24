@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+.bgImg {
+    background-color: #5981C3;
+    background-image: url("../images/backgroundimg.jpg");
+    background-position: center center;   
+    background-size: cover;
+    
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+}
+
+.navBar {
+    background-color: rgba(0,0,0,.3);
+    height: 50px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
